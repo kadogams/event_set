@@ -2,7 +2,7 @@
 
 <templates>
 
-    <t t-name="academy.product_availability">
+    <t t-name="event_set.product_availability">
         <t t-if="event_is_expired">
             <div t-attf-class="event_availability_message_#{product_template} text-danger mt16"><i class="fa fa-exclamation-triangle" role="img" aria-label="Warning" title="Warning"/> Not available anymore</div>
         </t>

@@ -1,4 +1,4 @@
-odoo.define('academy.VariantMixin', function (require) {
+odoo.define('event_set.VariantMixin', function (require) {
 'use strict';
 
 var VariantMixin = require('sale.VariantMixin');
@@ -7,7 +7,7 @@ var ajax = require('web.ajax');
 var core = require('web.core');
 var QWeb = core.qweb;
 var xml_load = ajax.loadXML(
-    '/academy/static/src/xml/event_set_product_availability.xml',
+    '/event_set/static/src/xml/event_set_product_availability.xml',
     QWeb
 );
 
@@ -75,7 +75,7 @@ VariantMixin._onChangeCombinationEventSet = function (ev, $parent, combination) 
             .remove();
 
         var $message = $(QWeb.render(
-            'academy.product_availability',
+            'event_set.product_availability',
             combination
         ));
         $('div.event_availability_messages').html($message);
