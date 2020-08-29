@@ -5,7 +5,8 @@ from odoo.exceptions import ValidationError
 
 
 class ProductTemplate(models.Model):
-    """Add fields related to event sets. It will allow to trigger event registrations upon the purchase of a product.
+    """Add fields related to event sets. It will allow to trigger event registrations upon the validation of a sale
+    order.
 
     """
     _inherit = "product.template"
