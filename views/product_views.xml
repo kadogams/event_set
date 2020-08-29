@@ -1,0 +1,98 @@
+<odoo>
+    <data>
+        <record id="product_template_form_view_inherit_event_set" model="ir.ui.view">
+            <field name="name">product.template.common.form.inherit.event.set</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_form_view"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//field[@name='event_ok']" position="replace">
+                    <group name="group_event">
+                        <field name="event_ok"/>
+                    </group>
+                    <group name="group_event_set">
+                        <field name="event_set_ok"/>
+                    </group>
+                </xpath>
+
+                <xpath expr="//field[@name='public_categ_ids']" position="after">
+                    <field name="event_availability" string="Availability Status" widget="selection" attrs="{'invisible': [('event_set_ok', '!=', True)]}"/>
+                    <field name="event_available_threshold" attrs="{'invisible': ['|', ('event_set_ok', '!=', True), ('event_availability', '!=', 'threshold')], 'required': [('event_set_ok', '=', True), ('event_availability', '=', 'threshold')]}"/>
+                </xpath>
+
+            </field>
+        </record>
+
+        <record id="product_template_only_form_view_inherit_event_set" model="ir.ui.view">
+            <field name="name">product.template.product.form.inherit.event.set</field>
+            <field name="model">product.template</field>
+            <field name="inherit_id" ref="product.product_template_only_form_view"/>
+            <field name="arch" type="xml">
+
+                <xpath expr="//notebook" position="inside">
+                    <page name="event_set" string="Event Set" attrs="{'invisible': ['|', ('event_set_ok', '!=', True), ('product_variant_count', '>', 1)]}">
+                        <group name="event_set">
+                            <field name="event_ids" widget="many2many_tags"/>
+                            <label for="event_seats_availability"/>
+                            <div class="oe_read_only">
+                                <field name="event_seats_availability"/>
+                                <span  attrs="{'invisible': [('event_seats_availability', '!=', 'limited')]}">
+                                    to
+                                </span>
+                                <field name="event_seats_available" attrs="{'invisible': [('event_seats_availability', '!=', 'limited')]}"/>
+                            </div>
+<!--                            <field name="event_is_expired"/>-->
+                        </group>
+                    </page>
+                </xpath>
+
+            </field>
+        </record>
+
+        <record id="product_normal_form_view_inherit_event_set" model="ir.ui.view">
+        	<field name="name">product.product.form.inherit.event.set</field>
+        	<field name="model">product.product</field>
+        	<field name="inherit_id" ref="product.product_normal_form_view"/>
+        	<field name="arch" type="xml">
+                <xpath expr="//notebook" position="inside">
+                    <page name="event_set" string="Event Set" attrs="{'invisible': [('event_set_ok', '!=', True)]}">
+                        <group name="event_set">
+                            <field name="event_ids" widget="many2many_tags"/>
+                            <label for="event_seats_availability"/>
+                            <div class="oe_read_only">
+                                <field name="event_seats_availability"/>
+                                <span  attrs="{'invisible': [('event_seats_availability', '!=', 'limited')]}">
+                                    to
+                                </span>
+                                <field name="event_seats_available" attrs="{'invisible': [('event_seats_availability', '!=', 'limited')]}"/>
+                            </div>
+<!--                            <field name="event_is_expired"/>-->
+                        </group>
+                    </page>
+                </xpath>
+        	</field>
+        </record>
+
+        <record id="product_variant_easy_edit_view_inherit_event_set" model="ir.ui.view">
+        	<field name="name">product.product.view.form.easy.inherit.event.set</field>
+        	<field name="model">product.product</field>
+        	<field name="inherit_id" ref="product.product_variant_easy_edit_view"/>
+        	<field name="arch" type="xml">
+                <xpath expr="//sheet" position="inside">
+                    <group name="event_set" string="Event Set" attrs="{'invisible':[('event_set_ok', '!=', True)]}">
+                        <field name="event_set_ok" invisible="1"/>
+                        <field name="event_ids" widget="many2many_tags"/>
+                            <label for="event_seats_availability"/>
+                            <div class="oe_read_only">
+                                <field name="event_seats_availability"/>
+                                <span  attrs="{'invisible': [('event_seats_availability', '!=', 'limited')]}">
+                                    to
+                                </span>
+                                <field name="event_seats_available" attrs="{'invisible': [('event_seats_availability', '!=', 'limited')]}"/>
+                            </div>
+                    </group>
+                </xpath>
+        	</field>
+        </record>
+    </data>
+</odoo>
