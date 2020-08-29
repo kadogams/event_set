@@ -2,7 +2,7 @@
 
 A custom Odoo module that allows to trigger registration to multiple events upon the full payment of a sale order.
 
-*Note: This is a module created to play around with Odoo.*
+*Note: This is a module created to play around with Odoo, and is not meant to be production ready.*
 
 ## Features
 
